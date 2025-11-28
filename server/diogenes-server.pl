@@ -72,7 +72,7 @@ USAGE: diogenes-server.pl [-dhlb] [-p port] [-H host] [-m netmask]
     -H  Specify the hostname or IP address to bind to, so that Diogenes
         can be accessed by other computers on the network.  Do not
         expose this server to the public Internet, as it has not been
-        designed with that level of security. 
+        designed with that level of security.
 
     -p  Specify a port to bind to (8888 is the default; the usual range
         is between 1024 and 65535).  If the specified port is
@@ -353,6 +353,7 @@ sub handle_request
         $ENV{QUERY_STRING} = '' unless $ENV{QUERY_STRING};
 
         $client->send_basic_header(RC_OK, '(OK)', 'HTTP/1.1');
+        print $client "Content-Type: text/html; charset=UTF-8\r\n\r\n";
         # This tells CGI.pm the name of the host and script, which goes into
         # the action parameter of the form element(s)
         my $host = $request->header('Host');

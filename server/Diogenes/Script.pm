@@ -214,7 +214,7 @@ my $numerically = sub { $a <=> $b; };
 
 my $print_title = sub
 {
-    print $f->header(-type=>"text/html; charset=$charset");
+    # print $f->header(-type=>"text/html; charset=$charset");
     my $title = shift;
     my $extra_script = shift;
     my $script;
@@ -482,7 +482,7 @@ $handler{splash} = sub
         print $f->center($f->p($f->strong('Error.')),
                          $f->p("Error: Custom corpus filter not found for choice $corpus!\n"));
     }
- 
+
     if ((not $st{query}) and $action eq 'search')
     {
         $print_title->('Error');
@@ -616,9 +616,9 @@ $output{multiple} = sub
     print
         $f->h2('Permit repetition'),
 
-        $f->p('Tick to permit a pattern that matches more than once in a passage to 
+        $f->p('Tick to permit a pattern that matches more than once in a passage to
               count multiple times toward the quantity of successful matches set above. ',
-              'E.g. to search for the repetition of a word or pattern, enter one pattern, 
+              'E.g. to search for the repetition of a word or pattern, enter one pattern,
               enter the minimum number of times it needs to appear, and tick this box.'),
         $f->checkbox(-name=>'repeat_matches',
                                   -checked=>0,
@@ -804,7 +804,7 @@ my $use_and_show_filter = sub
     my $q = shift;
     my $word_list_search = shift;
     my $filter_number = $st{custom_corpus};
-    if (defined $filter_number) { 
+    if (defined $filter_number) {
         my $filter = $filters[$filter_number];
         if ($filter)
         {
@@ -814,7 +814,7 @@ my $use_and_show_filter = sub
             }
             my $work_nums = $filter->{authors};
             my @texts = $q->select_authors( -author_nums => $work_nums);
-            
+
             print $f->h2('Searching in the following authors/texts:'),
                 $f->ul($f->li(\@texts)),
                 $f->hr;
@@ -1409,7 +1409,7 @@ $output{browser_output} = sub
             $f->submit( -name => 'browser_back',
                         -id => 'browser_back_submit',
                         -value => 'Previous Text'),
-        
+
             ($q->{end_of_file_flag} ?
              $f->submit( -name => 'end_of_file',
                          -value=> 'End of File',
@@ -2111,7 +2111,7 @@ $output{list_filter} = sub
 $output{delete_filter} = sub {
     my $filter_number = $st{filter_choice};
     if (defined $filter_number) {
-        splice @filters, $filter_number, 1;        
+        splice @filters, $filter_number, 1;
         $save_filters_and_go->();
     }
     else {
@@ -2283,7 +2283,7 @@ my $setup = sub {
     $external_dict = $init->{external_dict};
     $english_dict = $init->{english_dict};
     $xml_export_dir = $init->{xml_export_dir};
-    
+
     $ENV{PATH} = "/bin/:/usr/bin/";
     $| = 1;
 
@@ -2299,7 +2299,7 @@ my $setup = sub {
 
 # Dispatch query
 my $dispatch = sub {
-    
+
     my $check_mod_perl = $init->{check_mod_perl};
     if ($check_mod_perl and not $ENV{GATEWAY_INTERFACE} =~ /^CGI-Perl/)
     {
