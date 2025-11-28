@@ -60,6 +60,7 @@ my $lock_file_temp = File::Spec->catfile($config_dir, 'diogenes-lock-temp.json')
 # Mozilla wants this: it ignores css files of type text/plain.
 use LWP::MediaTypes qw(add_type);
 add_type('text/css', '.css');
+add_type('text/javascript', '.js');
 
 unless (getopts('dDp:hH:lm:bP:'))
 {
